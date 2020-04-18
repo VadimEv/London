@@ -1,14 +1,14 @@
 {{!< default}}
 
 {{#post}}
-<article class="post-content {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+<article class="post-content {{post_class}} {{#unless feature_image}}no-image{{/unless}}" id="postArticle">
 
     <header class="post-content-header">
         <h1 class="post-content-title">{{title}}</h1>
     </header>
 
     {{#if custom_excerpt}}
-        <p class="post-content-excerpt">{{custom_excerpt}}</p>
+        <p class="post-content-excerpt">&nbsp;</p>
     {{/if}}
 
     {{#if feature_image}}
@@ -19,8 +19,19 @@
 
     <div class="post-content-body">
         {{content}}
+        {{#has tag="ral"}}
+    <div class="rakleur-block">
+
     </div>
 
+        {{>color-info}}
+        {{/has}} 
+    </div>
+    <div class="post-color-feed"> 
+        {{#has tag="ral"}}
+	    {{>"color-pallete"}}
+        {{/has}} 
+    </div>
     {{!-- Email subscribe form at the bottom of the page --}}
     {{#if @labs.subscribers}}
     <section class="subscribe-form">
@@ -48,17 +59,8 @@
 
 </article>
 {{/post}}
-
 {{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
 {{#contentFor "scripts"}}
 <script>
-    var images = document.querySelectorAll('.kg-gallery-image img');
-    images.forEach(function (image) {
-        var container = image.closest('.kg-gallery-image');
-        var width = image.attributes.width.value;
-        var height = image.attributes.height.value;
-        var ratio = width / height;
-        container.style.flex = ratio + ' 1 0%';
-    })
 </script>
 {{/contentFor}}

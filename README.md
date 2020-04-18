@@ -1,35 +1,39 @@
-# London Evill Edition
-Форк форка Касера - дефолтной темы для [Ghost](http://github.com/tryghost/ghost/). Сделана для журналов, блогов и вообще чего угодно. Полностью бесплатна и полностью адаптивна, лицензия MIT.
+# London
 
-**Demo: https://ghost.anylight.ru**
+A custom, image-centric theme for [Ghost](http://github.com/tryghost/ghost/). Made for publishers and portfolios with plenty of graphics to show off to the world. Completely free and fully responsive, released under the MIT license.
 
-&nbsp;
-
-
+**Demo: https://london.ghost.io**
 
 &nbsp;
 
-# Первый раз используете Ghost тему?
-Гост использует простой шаблонизатор [Handlebars](http://handlebarsjs.com/) для своих тем.
-Тема достаточно хорошо откомментирована в коде, там что будет не сложно понять что и где происходит. Как только комфортно освоитесь с тем что происходит, можно озанкомится с полной документацией [API тем](https://themes.ghost.org) которая полнгостью описывает handlebars и их возможнео использование.
-
-**Главный файлы темы:**
-
-- `default.hbs` - Главный шаблон, все остальные используются надстройкой
-- `index.hbs` - Дефолтная домашняя страница
-- `post.hbs` - Дефолтная страница для записей
-- `page.hbs` - Для индивидуальных страниц (в Госте грань между страницами и записями весьма условна - страницы для статичного содержимого, а-ля контакты, конфиденциальность и прочее   
-- `tag.hbs` - шаблон для тэгов
-- `author.hbs` - шаблон для записей автора
-
-Тема поддерживает одну клевую фичу - можно делать индивидуальные шаблоны для страница просто добавляя их слаг(ссылку) к имени шаблона. Для примера 
-
-- `page-about.hbs` - Индивидуальный шаблон `/about/` страницы
-- `tag-news.hbs` - Индивидуальный шаблон `/tag/news/` архива записей
-- `author-ali.hbs` - Индивидуальный шаблон `/author/ali/` записей автора
+![london](https://user-images.githubusercontent.com/120485/50552024-84837400-0c82-11e9-8f1d-cf25962c7e62.jpg)
 
 
-# Разработка
+&nbsp;
+
+# First time using a Ghost theme?
+
+Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
+
+We've documented our default theme pretty heavily so that it should be fairly easy to work out what's going on just by reading the code and the comments. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://themes.ghost.org) which explains every possible Handlebars helper and template.
+
+**The main files are:**
+
+- `default.hbs` - The main template file
+- `index.hbs` - Used for the home page
+- `post.hbs` - Used for individual posts
+- `page.hbs` - Used for individual pages
+- `tag.hbs` - Used for tag archives
+- `author.hbs` - Used for author archives
+
+One neat trick is that you can also create custom one-off templates just by adding the slug of a page to a template file. For example:
+
+- `page-about.hbs` - Custom template for the `/about/` page
+- `tag-news.hbs` - Custom template for `/tag/news/` archive
+- `author-ali.hbs` - Custom template for `/author/ali/` archive
+
+
+# Development
 
 London styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
 
@@ -55,4 +59,4 @@ $ yarn zip
 
 # Copyright & License
 
-Copyright (c) 2013-2020 Ghost Foundation и Evill - Released under the [MIT license](LICENSE).
+Copyright (c) 2013-2019 Ghost Foundation - Released under the [MIT license](LICENSE).
