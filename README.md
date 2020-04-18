@@ -2,10 +2,9 @@
 
 Demo: https://ghost.anylight.ru
 
+ ![london-Evill-eidtion](https://ghost.anylight.ru/content/images/2020/04/Screenshot_2020-palitra-RAL.png)
  
-
- 
-#Первый раз используете Ghost тему?
+# Первый раз используете Ghost тему?
 
 Гост использует простой шаблонизатор Handlebars для своих тем. Тема достаточно хорошо откомментирована в коде, там что будет не сложно понять что и где происходит. Как только комфортно освоитесь с тем что происходит, можно озанкомится с полной документацией API тем которая полнгостью описывает handlebars и их возможнео использование.
 
@@ -24,7 +23,7 @@ Demo: https://ghost.anylight.ru
     tag-news.hbs - Индивидуальный шаблон /tag/news/ архива записей
     author-ali.hbs - Индивидуальный шаблон /author/ali/ записей автора
 
-#Разработка
+# Разработка
 
 London styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need Node, Yarn and Gulp installed globally. After that, from the theme's root directory:
 
