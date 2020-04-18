@@ -31,16 +31,18 @@
                         </div>
                     </div>
                 </a>
-                <nav id="swup" class="site-head-left">
-                    {{navigation}}
-                </nav>
-                <div class="site-head-center">
+                <div id="swup" class="site-head-left">
                     {{#if @site.logo}}
                     <a class="site-head-logo" href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{@site.title}}" /></a>
                     {{else}}
                     <a class="site-head-logo" href="{{@site.url}}">{{@site.title}}</a>
                     {{/if}}
                 </div>
+                <nav class="site-head-center">
+
+                    {{navigation}}
+
+                </nav>
                 <div class="site-head-right">
                     <div class="social-links">
                         {{#if @site.facebook}}
@@ -48,8 +50,9 @@
                         {{/if}}
                         {{#if @site.twitter}}
                         <a href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">Twitter</a>
-                        {{/if}}
                         <a href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">RSS</a>
+                        {{/if}}
+	        	{{>search-icon}}
                     </div>
                 </div>
             </div>
@@ -66,10 +69,11 @@
 
         {{!-- The footer at the very bottom of the screen --}}
         <footer class="site-foot">
-            &copy; {{date format="YYYY"}} <a href="{{@site.url}}">{{@site.title}}</a> &mdash; Published with <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+            &copy; {{date format="YYYY"}} <a href="{{@site.url}}">{{@site.title}}</a>
         </footer>
 
     </div>
+    {{>search}}
 
     {{!-- The big email subscribe modal content --}}
     {{#if @labs.subscribers}}
@@ -85,9 +89,10 @@
         </div>
     </div>
     {{/if}}
-
+    <script src="{{asset "built/global.js"}}"></script>
     <script src="{{asset "built/swup.js"}}" data-swup-ignore-script></script>
     <script src="{{asset "built/infinitescroll.js"}}" data-swup-ignore-script></script>
+    <script src="{{asset "built/glider.min.js"}}" data-swup-ignore-script></script>
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -105,21 +110,55 @@
     {{!-- Handle swup content replacement --}}
     <script data-swup-ignore-script>
         $(document).ready(function () {
-            // Mobile Menu Trigger
+         // Mobile Menu Trigger
             $('.nav-burger').click(function () {
                 $('body').toggleClass('site-head-open');
             });
-        });
-
+         });
         // Initiate Swup transitions
         var swup = new Swup({
             plugins: [new SwupHeadPlugin(), new SwupScriptsPlugin()],
         });
+
         document.addEventListener('swup:contentReplaced', event => {
             initInfiniteScroll(window, document);
+            setColorHex(document);
+        // Re-fire glider when back to home event triggered via swup. Fuck swup.
+	if(document.querySelector('.index-news-post')){
+	new Glider(document.querySelector('.index-news-post'), {
+	  slidesToShow: 1,
+	  dots: '.dots',
+          rewind: true,   
+	  draggable: true,
+	  arrows: {
+	    prev: '.glider-prev',
+	    next: '.glider-next'
+	  }
+	});
+	};
+
+	    window.scrollTo({ top: 0, behavior: 'smooth' });      
             $('body').removeClass('site-head-open');
+            $('body').removeClass('search-opened');          
+            $('body').attr('class', function(i, c){
+		    return c.replace(/(^|\s)tag-\S+/g, '');
+			});   
         });
     </script>
-
+{{#is "home"}}
+    <script data-swup-ignore-script>
+        // Initiate glider for news post on front-page
+	new Glider(document.querySelector('.index-news-post'), {
+	  slidesToShow: 1,
+	  dots: '.dots',
+          rewind: true,   
+	  draggable: true,
+	  arrows: {
+	    prev: '.glider-prev',
+	    next: '.glider-next'
+	  }
+	});
+    </script>
+{{/is}}
 </body>
 </html>

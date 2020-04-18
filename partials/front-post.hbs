@@ -1,0 +1,23 @@
+<div class="post-wrap flex {{post_class}} {{#if feature_image}}is-image{{/if}}">
+<article>
+	<a href="{{url}}" class="item-link-overlay"></a>
+	{{#if feature_image}}
+	<div class="item-image" style="background-image: url({{feature_image}})"></div>
+	{{/if}}
+	<h2><a href="{{url}}" class="white">{{title}}</a></h2>
+        <div class="post-meta">
+	{{#if authors}}
+	    {{#foreach authors}}
+        	<div class="post-author">{{t "by"}} {{name}}</div>
+	    {{/foreach}}
+	{{/if}}
+	<time datetime="{{date format="YYYY-MM-DD"}}"> {{date}}</time>
+	{{#tag}}
+	<a class="primary-tag global-tag white" href="{{url}}">{{name}}</a>
+	{{/tag}}
+        </div>
+        <div class="post-excerpt">{{excerpt}}</div>
+        <a href="{{url}}"><button type="button" name="button" class="read-more-btn">{{t "More"}}</button></a>
+
+</article>
+</div>

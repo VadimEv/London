@@ -1,0 +1,23 @@
+{{#is "page"}}
+{{#get "posts" order="published_at asc" include="tags" filter="tag:ral" limit=@config.posts_per_page }}
+    {{#foreach posts}}
+        {{> "post-card"}}
+    {{/foreach}}
+{{/get}}
+{{/is}}
+
+{{#is "post"}}
+{{#get "posts" order="published_at asc" include="tags" filter="tag:ral + id:-{{id}}"}}
+    {{#foreach posts}}
+        {{> "post-card"}}
+    {{/foreach}}
+{{/get}}
+{{/is}}
+
+{{#is "tag"}}
+{{#get "posts" order="published_at asc" include="tags" filter="tag:ral"}}
+    {{#foreach posts}}
+        {{> "post-card"}}
+    {{/foreach}}
+{{/get}}
+{{/is}} 

@@ -6,7 +6,9 @@ var livereload = require('gulp-livereload');
 var postcss = require('gulp-postcss');
 var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
+var minify = require('gulp-minify');
 var beeper = require('beeper');
+var webp = require('gulp-webp');
 
 // postcss plugins
 var autoprefixer = require('autoprefixer');
@@ -29,6 +31,7 @@ const handleError = (done) => {
     };
 };
 
+
 function hbs(done) {
     pump([
         src(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs']),
@@ -41,7 +44,7 @@ function css(done) {
         easyimport,
         customProperties({preserve: false}),
         colorFunction(),
-        autoprefixer(),
+        autoprefixer({browsers: ['last 2 versions']}),
         cssnano()
     ];
 
@@ -57,6 +60,7 @@ function js(done) {
     pump([
         src('assets/js/*.js', {sourcemaps: true}),
         uglify(),
+        minify(), 
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));
@@ -79,8 +83,9 @@ function zipper(done) {
 }
 
 const cssWatcher = () => watch('assets/css/**', css);
+const jsWatcher = () => watch('assets/js/**', js);
 const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs'], hbs);
-const watcher = parallel(cssWatcher, hbsWatcher); const build = series(css, js);
+const watcher = parallel(cssWatcher, jsWatcher, hbsWatcher); const build = series(css, js);
 const dev = series(build, serve, watcher);
 
 exports.build = build;
