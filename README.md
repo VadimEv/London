@@ -1,62 +1,48 @@
-# London
+Форк форка Касера - дефолтной темы для Ghost. Сделана для журналов, блогов и вообще чего угодно. Полностью бесплатна и полностью адаптивна, лицензия MIT.
 
-A custom, image-centric theme for [Ghost](http://github.com/tryghost/ghost/). Made for publishers and portfolios with plenty of graphics to show off to the world. Completely free and fully responsive, released under the MIT license.
+Demo: https://ghost.anylight.ru
 
-**Demo: https://london.ghost.io**
+ 
 
-&nbsp;
+ 
+Первый раз используете Ghost тему?
 
-![london](https://user-images.githubusercontent.com/120485/50552024-84837400-0c82-11e9-8f1d-cf25962c7e62.jpg)
+Гост использует простой шаблонизатор Handlebars для своих тем. Тема достаточно хорошо откомментирована в коде, там что будет не сложно понять что и где происходит. Как только комфортно освоитесь с тем что происходит, можно озанкомится с полной документацией API тем которая полнгостью описывает handlebars и их возможнео использование.
 
+Главный файлы темы:
 
-&nbsp;
+    default.hbs - Главный шаблон, все остальные используются надстройкой
+    index.hbs - Дефолтная домашняя страница
+    post.hbs - Дефолтная страница для записей
+    page.hbs - Для индивидуальных страниц (в Госте грань между страницами и записями весьма условна - страницы для статичного содержимого, а-ля контакты, конфиденциальность и прочее
+    tag.hbs - шаблон для тэгов
+    author.hbs - шаблон для записей автора
 
-# First time using a Ghost theme?
+Тема поддерживает одну клевую фичу - можно делать индивидуальные шаблоны для страница просто добавляя их слаг(ссылку) к имени шаблона. Для примера
 
-Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
+    page-about.hbs - Индивидуальный шаблон /about/ страницы
+    tag-news.hbs - Индивидуальный шаблон /tag/news/ архива записей
+    author-ali.hbs - Индивидуальный шаблон /author/ali/ записей автора
 
-We've documented our default theme pretty heavily so that it should be fairly easy to work out what's going on just by reading the code and the comments. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://themes.ghost.org) which explains every possible Handlebars helper and template.
+Разработка
 
-**The main files are:**
+London styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need Node, Yarn and Gulp installed globally. After that, from the theme's root directory:
 
-- `default.hbs` - The main template file
-- `index.hbs` - Used for the home page
-- `post.hbs` - Used for individual posts
-- `page.hbs` - Used for individual pages
-- `tag.hbs` - Used for tag archives
-- `author.hbs` - Used for author archives
-
-One neat trick is that you can also create custom one-off templates just by adding the slug of a page to a template file. For example:
-
-- `page-about.hbs` - Custom template for the `/about/` page
-- `tag-news.hbs` - Custom template for `/tag/news/` archive
-- `author-ali.hbs` - Custom template for `/author/ali/` archive
-
-
-# Development
-
-London styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
-
-```bash
 $ yarn install
 $ yarn dev
-```
 
-Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
+Now you can edit /assets/css/ files, which will be compiled to /assets/built/ automatically.
 
-The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
+The zip Gulp task packages the theme files into dist/<theme-name>.zip, which you can then upload to your site.
 
-```bash
 $ yarn zip
-```
 
-# PostCSS Features Used
+PostCSS Features Used
 
-- Autoprefixer - Don't worry about writing browser prefixes of any kind, it's all done automatically with support for the latest 2 major versions of every browser.
-- Variables - Simple pure CSS variables
-- [Color Function](https://github.com/postcss/postcss-color-function)
+    Autoprefixer - Don't worry about writing browser prefixes of any kind, it's all done automatically with support for the latest 2 major versions of every browser.
+    Variables - Simple pure CSS variables
+    Color Function
 
+Copyright & License
 
-# Copyright & License
-
-Copyright (c) 2013-2019 Ghost Foundation - Released under the [MIT license](LICENSE).
+Copyright (c) 2013-2020 Ghost Foundation и Evill - Released under the MIT license.
