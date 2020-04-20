@@ -15,12 +15,6 @@ function setColorHex(document){
 
 
       }
-
-   var ralName = $('.post-color-card-name p').html();
-	if (ralName) {
-	   var refString = "Koop verf in " + ralName.replace(/\s/g,'') + " voordelig <strong>bij Praxis!</strong>";
-	   $('.rakleur-block a').html(refString);
-	}  
 }
 
 /*
