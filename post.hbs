@@ -20,17 +20,14 @@
     <div class="post-content-body">
         {{content}}
         {{#has tag="ral"}}
-    <div class="rakleur-block">
-
-    </div>
-
         {{>color-info}}
-        {{/has}} 
+        {{/has}}
     </div>
-    <div class="post-color-feed"> 
+    <div class="post-color-feed">
         {{#has tag="ral"}}
-	    {{>"color-pallete"}}
-        {{/has}} 
+         {{>"color-filter"}}
+	       {{>"color-pallete"}}
+        {{/has}}
     </div>
     {{!-- Email subscribe form at the bottom of the page --}}
     {{#if @labs.subscribers}}
@@ -59,8 +56,3 @@
 
 </article>
 {{/post}}
-{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
-{{#contentFor "scripts"}}
-<script>
-</script>
-{{/contentFor}}

@@ -10,6 +10,7 @@ into the {body} of the default.hbs template --}}
     {{/if}}
 {{/is}}
 <div class="post-feed" id="index-custom">
+  {{>"color-filter"}}
 	{{>"color-pallete"}}
 </div>
 {{#post}}
@@ -33,7 +34,4 @@ into the {body} of the default.hbs template --}}
       	<span class="prev"></span>
       </div>
        <div role="tablist" class="dots"></div>
-
 </div>
-
-

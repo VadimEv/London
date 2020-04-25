@@ -17,16 +17,12 @@ into the {body} of the default.hbs template --}}
 
 <div class="tag-template post-feed">
 {{#foreach posts}}
-
+{{#has tag="ral"}}
+ {{>"color-filter"}}
+{{/has}}
     {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
     {{> "post-card"}}
 
 {{/foreach}}
-
-</div>
-
-<div class="post-color-feed"> 
-   {{>"color-pallete"}}
-</div>
 
 </div>

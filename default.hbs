@@ -99,52 +99,44 @@
         crossorigin="anonymous">
     </script>
 
-    <div id="swup">
-        {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
-        {{{block "scripts"}}}
-
-        {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
-        {{ghost_foot}}
-    </div>
-
     {{!-- Handle swup content replacement --}}
     <script data-swup-ignore-script>
-        $(document).ready(function () {
-         setColorHex(document);
-         // Mobile Menu Trigger
-            $('.nav-burger').click(function () {
-                $('body').toggleClass('site-head-open');
-            });
-         });
-        // Initiate Swup transitions
-        var swup = new Swup({
-            plugins: [new SwupHeadPlugin(), new SwupScriptsPlugin()],
-        });
+    $(document).ready(function () {
+      setColorHex(document)
+      // Mobile Menu Trigger
+      $('.nav-burger').click(function () {
+        $('body').toggleClass('site-head-open')
+      })
+    })
+    // Initiate Swup transitions
+    var swup = new Swup({
+      plugins: [new SwupHeadPlugin(), new SwupScriptsPlugin()]
+    })
 
-        document.addEventListener('swup:contentReplaced', event => {
-            initInfiniteScroll(window, document);
-            setColorHex(document);
-        // Re-fire glider when back to home event triggered via swup. Fuck swup.
-	if(document.querySelector('.index-news-post')){
-	new Glider(document.querySelector('.index-news-post'), {
-	  slidesToShow: 1,
-	  dots: '.dots',
-          rewind: true,   
-	  draggable: true,
-	  arrows: {
-	    prev: '.glider-prev',
-	    next: '.glider-next'
-	  }
-	});
-	};
+    document.addEventListener('swup:contentReplaced', event => {
+      initInfiniteScroll(window, document)
+      setColorHex(document)
+      // Re-fire glider when back to home event triggered via swup. Fuck swup.
+      if(document.querySelector('.index-news-post')) {
+        new Glider(document.querySelector('.index-news-post'), {
+          slidesToShow: 1,
+          dots: '.dots',
+          rewind: true,
+          draggable: true,
+          arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+          }
+        })
+      };
 
-	    window.scrollTo({ top: 0, behavior: 'smooth' });      
-            $('body').removeClass('site-head-open');
-            $('body').removeClass('search-opened');          
-            $('body').attr('class', function(i, c){
-		    return c.replace(/(^|\s)tag-\S+/g, '');
-			});   
-        });
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      $('body').removeClass('site-head-open')
+      $('body').removeClass('search-opened')
+      $('body').attr('class', function (i, c) {
+        return c.replace(/(^|\s)tag-\S+/g, '')
+      })
+    })
     </script>
 {{#is "home"}}
     <script data-swup-ignore-script>
@@ -152,7 +144,7 @@
 	new Glider(document.querySelector('.index-news-post'), {
 	  slidesToShow: 1,
 	  dots: '.dots',
-          rewind: true,   
+          rewind: true,
 	  draggable: true,
 	  arrows: {
 	    prev: '.glider-prev',
@@ -161,5 +153,6 @@
 	});
     </script>
 {{/is}}
+{{{block "scripts"}}}
 </body>
 </html>
