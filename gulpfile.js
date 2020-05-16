@@ -7,6 +7,8 @@ var postcss = require('gulp-postcss');
 var zip = require('gulp-zip');
 var uglify = require('gulp-uglify-es').default;
 var minify = require('gulp-minify');
+var concat = require('gulp-concat')
+var concatCss = require('gulp-concat-css')
 var beeper = require('beeper');
 var webp = require('gulp-webp');
 
@@ -15,6 +17,7 @@ var autoprefixer = require('autoprefixer');
 var colorFunction = require('postcss-color-function');
 var cssnano = require('cssnano');
 var customProperties = require('postcss-custom-properties');
+var purgecss = require('@fullhuman/postcss-purgecss')
 var easyimport = require('postcss-easy-import');
 
 function serve(done) {
@@ -45,26 +48,36 @@ function css(done) {
         customProperties({preserve: false}),
         colorFunction(),
         autoprefixer({browsers: ['last 2 versions']}),
+        purgecss({
+	      content: ['*.hbs', 'partials/**/*.hbs'],
+	      css: ['assets/css/**'],
+	      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [] }),
         cssnano()
     ];
 
     pump([
         src('assets/css/*.css', {sourcemaps: true}),
         postcss(processors),
+	concatCss('one.css'),
         dest('assets/built/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));
 }
 
-function js(done) {
-    pump([
-        src('assets/js/*.js', {sourcemaps: true}),
-        uglify(),
-        minify(), 
-        dest('assets/built/', {sourcemaps: '.'}),
-        livereload()
-    ], handleError(done));
+function js (done) {
+  pump([
+    src([
+    // pull in lib files first so our own code can depend on it
+      'assets/js/lib/*.js',
+      'assets/js/*.js'
+    ], { sourcemaps: true }),
+    concat('one.js'),
+    uglify(),
+    dest('assets/built/', { sourcemaps: '.' }),
+    livereload()
+  ], handleError(done))
 }
+
 
 function zipper(done) {
     var targetDir = 'dist/';

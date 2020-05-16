@@ -1,11 +1,11 @@
 {
-    "name": "london-Palitra-prod",
+    "name": "Peterburg-Palitra-prod",
     "description": "A minimum, ral-color-centric theme for Ghost.",
-    "demo": "https://anylight.ru",
-    "version": "1.2.1",
+    "demo": "https://ghost.anylight.ru",
+    "version": "1.0.0",
     "engines": {
-        "ghost": ">=2.0.0",
-        "ghost-api": "v2"
+        "ghost": ">=3.0.0",
+        "ghost-api": "v3"
     },
     "license": "MIT",
     "screenshots": {
@@ -47,6 +47,8 @@
         "autoprefixer": "9.4.10",
         "cssnano": "4.1.10",
         "gscan": "^2.0.0",
+        "gulp-concat": "2.6.1",
+        "gulp-concat-css": "3.1.0",
         "gulp-livereload": "4.0.1",
         "gulp-minify": "^3.1.0",
         "gulp-postcss": "8.0.0",
@@ -57,7 +59,9 @@
         "gulp-zip": "4.2.0",
         "postcss-color-function": "4.0.1",
         "postcss-custom-properties": "8.0.9",
-        "postcss-easy-import": "3.0.0"
+        "postcss-easy-import": "3.0.0",
+        "postcss-purgecss": "2.0.3",
+        "pump": "3.0.0"
     },
     "config": {
         "posts_per_page": 255,
@@ -80,6 +84,7 @@
         }
     },
     "dependencies": {
+        "@fullhuman/postcss-purgecss": "^2.2.0",
         "gulp": "^4.0.2",
         "gulp-uglify-es": "^2.0.0"
     }
